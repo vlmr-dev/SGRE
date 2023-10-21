@@ -14,6 +14,14 @@ def criar_arquivo():
     except FileExistsError:
         print("O arquivo 'registros.txt' já existe.")
 
+# Funcionalidade 01
+def adicionar_estudante():
+    nome = input("Digite o nome do estudante: ")
+    id_estudante = input("Digite o ID do estudante: ")
+    notas = input("Digite as notas do estudante (separadas por espaço): ").split()
+    notas = [float(nota) for nota in notas]
+    estudantes.append({"nome": nome, "id": id_estudante, "notas": notas})
+
 estudantes = []
 
 criar_arquivo()
@@ -22,12 +30,15 @@ while True:
     print("")
     print("| SISTEMA DE GERENCIAMENTO DE REGISTROS DE ESTUDANTES |")
     print("")
-    print("1. Sair")
+    print("1. Adicionar Registro de Estudante")
+    print("2. Sair")
     print("")
 
-    opcao = input("Digite sua escolha: ")
+    opcao = input("Digite sua escolha (1 - 2): ")
 
     if opcao == "1":
+        adicionar_estudante()
+    elif opcao == "2":
         print("Até logo!")
         break
     else:
