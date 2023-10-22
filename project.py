@@ -54,6 +54,19 @@ def salvar_em_arquivo():
             linha = f"{estudante['nome']},{estudante['id']},{','.join(map(str, estudante['notas']))}\n"
             arquivo.write(linha)
 
+# Funcionalidade 06 
+def carregar_de_arquivo():
+    try:
+        sgre_directory = os.path.expanduser("~/SGRE")
+        arquivo_path = os.path.join(sgre_directory, "registros.txt")
+        with open(arquivo_path, "r") as arquivo:
+            for linha in arquivo:
+                dados = linha.strip().split(',')
+                nome, id_estudante, notas = dados[0], dados[1], [float(nota) for nota in dados[2].split(',')]
+                estudantes.append({"nome": nome, "id": id_estudante, "notas": notas})
+    except FileNotFoundError:
+        print("Nenhum arquivo de registros encontrado.")
+
 estudantes = []
 
 criar_arquivo()
@@ -67,10 +80,11 @@ while True:
     print("3. Procurar por um Estudante")
     print("4. Calcular Média das Notas")
     print("5. Salvar Registros em Arquivo")
-    print("6. Sair")
+    print("6. Carregar Registros de Arquivo")
+    print("7. Sair")
     print("")
 
-    opcao = input("Digite sua escolha (1 - 6): ")
+    opcao = input("Digite sua escolha (1 - 7): ")
 
     if opcao == "1":
         adicionar_estudante()
@@ -81,8 +95,10 @@ while True:
     elif opcao == "4":
         calcular_media()
     elif opcao == "5":
-        salvar_em_arquivo() 
+        salvar_em_arquivo()
     elif opcao == "6":
+        carregar_de_arquivo()
+    elif opcao == "7":
         print("Até logo!")
         break
     else:
