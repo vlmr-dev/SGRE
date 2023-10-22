@@ -45,6 +45,15 @@ def calcular_media():
     media = sum(notas_totais) / len(notas_totais)
     print(f"A média de notas de todos os estudantes é: {media:.2f}")
 
+# Funcionalidade 05
+def salvar_em_arquivo():
+    sgre_directory = os.path.expanduser("~/SGRE")
+    arquivo_path = os.path.join(sgre_directory, "registros.txt")
+    with open(arquivo_path, "w") as arquivo:
+        for estudante in estudantes:
+            linha = f"{estudante['nome']},{estudante['id']},{','.join(map(str, estudante['notas']))}\n"
+            arquivo.write(linha)
+
 estudantes = []
 
 criar_arquivo()
@@ -57,10 +66,11 @@ while True:
     print("2. Exibir Registros de Estudantes")
     print("3. Procurar por um Estudante")
     print("4. Calcular Média das Notas")
-    print("5. Sair")
+    print("5. Salvar Registros em Arquivo")
+    print("6. Sair")
     print("")
 
-    opcao = input("Digite sua escolha (1 - 5): ")
+    opcao = input("Digite sua escolha (1 - 6): ")
 
     if opcao == "1":
         adicionar_estudante()
@@ -69,8 +79,10 @@ while True:
     elif opcao == "3":
         procurar_por_id()
     elif opcao == "4":
-        calcular_media() 
+        calcular_media()
     elif opcao == "5":
+        salvar_em_arquivo() 
+    elif opcao == "6":
         print("Até logo!")
         break
     else:
