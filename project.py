@@ -22,6 +22,11 @@ def adicionar_estudante():
     notas = [float(nota) for nota in notas]
     estudantes.append({"nome": nome, "id": id_estudante, "notas": notas})
 
+# Funcionalidade 02
+def exibir_estudantes():
+    for estudante in estudantes:
+        print(f"Nome: {estudante['nome']}, ID: {estudante['id']}, Notas: {', '.join(map(str, estudante['notas']))}")
+
 estudantes = []
 
 criar_arquivo()
@@ -31,14 +36,17 @@ while True:
     print("| SISTEMA DE GERENCIAMENTO DE REGISTROS DE ESTUDANTES |")
     print("")
     print("1. Adicionar Registro de Estudante")
-    print("2. Sair")
+    print("2. Exibir Registros de Estudantes")
+    print("3. Sair")
     print("")
 
-    opcao = input("Digite sua escolha (1 - 2): ")
+    opcao = input("Digite sua escolha (1 - 3): ")
 
     if opcao == "1":
         adicionar_estudante()
     elif opcao == "2":
+        exibir_estudantes()    
+    elif opcao == "3":
         print("Até logo!")
         break
     else:
