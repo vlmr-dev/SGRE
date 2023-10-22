@@ -36,6 +36,15 @@ def procurar_por_id():
             return
     print("Estudante com ID informado não encontrado.")
 
+# Funcionalidade 04
+def calcular_media():
+    if not estudantes:
+        print("Nenhum estudante registrado ainda.")
+        return
+    notas_totais = [nota for estudante in estudantes for nota in estudante['notas']]
+    media = sum(notas_totais) / len(notas_totais)
+    print(f"A média de notas de todos os estudantes é: {media:.2f}")
+
 estudantes = []
 
 criar_arquivo()
@@ -47,18 +56,21 @@ while True:
     print("1. Adicionar Registro de Estudante")
     print("2. Exibir Registros de Estudantes")
     print("3. Procurar por um Estudante")
-    print("4. Sair")
+    print("4. Calcular Média das Notas")
+    print("5. Sair")
     print("")
 
-    opcao = input("Digite sua escolha (1 - 4): ")
+    opcao = input("Digite sua escolha (1 - 5): ")
 
     if opcao == "1":
         adicionar_estudante()
     elif opcao == "2":
         exibir_estudantes()
     elif opcao == "3":
-        procurar_por_id()    
+        procurar_por_id()
     elif opcao == "4":
+        calcular_media() 
+    elif opcao == "5":
         print("Até logo!")
         break
     else:
