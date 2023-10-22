@@ -27,6 +27,15 @@ def exibir_estudantes():
     for estudante in estudantes:
         print(f"Nome: {estudante['nome']}, ID: {estudante['id']}, Notas: {', '.join(map(str, estudante['notas']))}")
 
+# Funcionalidade 03
+def procurar_por_id():
+    id_procurado = input("Digite o ID do estudante que deseja procurar: ")
+    for estudante in estudantes:
+        if estudante['id'] == id_procurado:
+            print(f"Estudante encontrado - Nome: {estudante['nome']}, ID: {estudante['id']}, Notas: {', '.join(map(str, estudante['notas']) )}")
+            return
+    print("Estudante com ID informado não encontrado.")
+
 estudantes = []
 
 criar_arquivo()
@@ -37,16 +46,19 @@ while True:
     print("")
     print("1. Adicionar Registro de Estudante")
     print("2. Exibir Registros de Estudantes")
-    print("3. Sair")
+    print("3. Procurar por um Estudante")
+    print("4. Sair")
     print("")
 
-    opcao = input("Digite sua escolha (1 - 3): ")
+    opcao = input("Digite sua escolha (1 - 4): ")
 
     if opcao == "1":
         adicionar_estudante()
     elif opcao == "2":
-        exibir_estudantes()    
+        exibir_estudantes()
     elif opcao == "3":
+        procurar_por_id()    
+    elif opcao == "4":
         print("Até logo!")
         break
     else:
